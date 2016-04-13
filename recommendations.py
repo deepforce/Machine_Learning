@@ -140,3 +140,18 @@ def loadMovieLens(path='data/movielens'):
         prefs.setdefault(user,{})
         prefs[user][movies[movieid]]=float(rating)
     return prefs
+
+def sim_tonimoto(prefs, p1, p2):
+    si={}
+    for item in prefs[p1]:
+        if item in prefs[p2]: si[item]=1
+
+    n=len(si)
+    
+    if n==0: return 0
+    
+    len1=len(prefs[p1])
+    len2=len(prefs[p2])
+    
+    r = float(n)/(len1+len2-n)
+    return r
